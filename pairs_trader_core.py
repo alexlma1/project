@@ -3,7 +3,6 @@ import pandas as pd
 import datetime as dt
 import random
 from statsmodels.tsa.api import VECM
-from concurrent.futures import ProcessPoolExecutor
 import matplotlib.pyplot as plt
 from statsmodels.tsa.stattools import coint
 from numpy.linalg import lstsq
@@ -27,28 +26,6 @@ PairsTrader class and all its methods:
     run_strategy
     plot_positions
 '''
-
-def read_yf_data(file_name="yf_data.csv"):
-    yf_data = pd.read_csv(file_name)
-    yf_data = yf_data.dropna(axis=1, how='any')
-    yf_data = yf_data.reset_index()
-    yf_data = yf_data.drop('CHRD', axis=1, errors='ignore')
-    yf_data = yf_data.drop('index', axis=1, errors='ignore')
-    yf_data = yf_data.set_index('Date')
-    return yf_data
-import numpy as np
-import pandas as pd
-import datetime as dt
-import random
-from statsmodels.tsa.api import VECM
-import matplotlib.pyplot as plt
-from statsmodels.tsa.stattools import coint
-from numpy.linalg import lstsq
-import itertools
-import matplotlib.dates as mdates
-from numpy.lib.stride_tricks import sliding_window_view
-from scipy.stats import norm
-
 
 def read_yf_data(file_name="yf_data.csv"):
     yf_data = pd.read_csv(file_name)
